@@ -1,6 +1,8 @@
 # Use a base image with OpenSSH server
 FROM ubuntu:latest
 
+ARG INSTALL_EXTRA
+
 # Install OpenSSH server
 RUN apt-get update && apt-get install -y \
     openssh-server \
@@ -13,7 +15,14 @@ RUN apt-get update && apt-get install -y \
     iputils-ping \
     net-tools \
     procps \
+    dnsutils \
     && apt-get clean
+
+RUN if [ "$INSTALL_EXTRA" = "true" ]; then \
+    apt-get install -y \
+    nmap \
+    && apt-get clean; \
+fi
 
 SHELL ["/bin/bash", "-c"]
 RUN echo 'if [ -f /etc/bash_completion ]; then . /etc/bash_completion; fi' >> /root/.bashrc
