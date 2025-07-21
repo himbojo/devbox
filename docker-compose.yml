@@ -1,0 +1,9 @@
+services:
+  sshd_server:
+    build: . # Build from the current directory where Dockerfile is located
+    ports:
+      - "2222:22" # Map host port 2222 to container port 22
+    volumes:
+      - ./workspace:/root/test
+    restart: always # Keep the service running
+    tty: true
