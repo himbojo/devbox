@@ -8,6 +8,7 @@ services:
     ports:
       - "2222:22" # Map host port 2222 to container port 22
     volumes:
-      - ./workspace:/root/test
+      - ./workspace:/root/source
+      - ./.vscode-server:/root/.vscode-server
     restart: always # Keep the service running
     tty: true

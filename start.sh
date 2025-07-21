@@ -2,6 +2,7 @@
 
 echo "If workspace folder does not exist create it..."
 [ -d "/workspace" ] || mkdir -p "workspace"
+[ -d "/.vscode-server" ] || mkdir -p ".vscode-server"
 
 export INSTALL_EXTRA=false
 
