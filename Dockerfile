@@ -16,11 +16,23 @@ RUN apt-get update && apt-get install -y \
     net-tools \
     procps \
     dnsutils \
+    lsof \
+    tldr \
     && apt-get clean
+
+# Create folder for tldr
+RUN mkdir -p ~root/.local/share/tldr
+# Update tldr repo
+RUN tldr -u
 
 RUN if [ "$INSTALL_EXTRA" = "true" ]; then \
     apt-get install -y \
     nmap \
+    netcat-openbsd \
+    tcpdump \
+    traceroute \
+    whois \
+    hping3 \
     && apt-get clean; \
 fi
 
